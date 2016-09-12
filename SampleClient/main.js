@@ -3,8 +3,8 @@ var mqtt = require('mqtt');
 
 var API_URL = "https://swapi.co/api/";
 
-var pub  = mqtt.connect('mqtt://test.mosquitto.org');
-var sub  = mqtt.connect('mqtt://test.mosquitto.org');
+// TODO: MOVE DO COMMON PLACE (configuration file?)
+var sub  = mqtt.connect('mqtt://localhost:1883');
 
 // Subscriber setup
 sub.on('connect', function () {
@@ -18,14 +18,4 @@ sub.on('message', function (topic, message) {
   var apiResult = request.get(API_URL + message.toString(), function(error, response, body) {
     console.log(body);
   });
-  sub.end();
-});
-
-// Publisher setup
-pub.on('connect', function () {
-  setInterval(() => {
-    pub.publish('swapi', 'people/1');
-    console.log("Published to swapi");
-  }, 1000);
-
 });
