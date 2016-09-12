@@ -1,20 +1,26 @@
-var request = require('request');
-var mqtt = require('mqtt');
+var request = require("request");
+var mqtt = require("mqtt");
+var _ = require("lodash");
 
-var API_URL = "https://swapi.co/api/";
+var config = require("../config");
 
-// TODO: MOVE DO COMMON PLACE (configuration file?)
-var sub  = mqtt.connect('mqtt://localhost:1883');
+var MQTT_URL = config.mqtt.getUrl();
+var API_URL = config.api.getUrl();
+
+var sub  = mqtt.connect(MQTT_URL);
 
 // Subscriber setup
-sub.on('connect', function () {
-  sub.subscribe('swapi');
-  console.log("Subscribed to swapi");
+sub.on("connect", function () {
+  console.log("Subscribing");
+  _.forEach(config.mqtt.channels, (c) => {
+    sub.subscribe(c);
+    console.log("> " + c);
+  });
 });
 
-sub.on('message', function (topic, message) {
-  // message is Buffer
-  console.log("Received Message on swapi");
+sub.on("message", function (topic, message) {
+  console.log("Received Message on " + topic);
+  console.log("Getting message from " + API_URL + message.toString());
   var apiResult = request.get(API_URL + message.toString(), function(error, response, body) {
     console.log(body);
   });
