@@ -9,15 +9,14 @@ config.mqtt = {
   ip: "localhost",
   protocol: "mqtt",
   getUrl: function() { return buildUrl(this); },
-  channels: ["sensors", "test"]
+  channels: ["sensor", "sensors", "test"]
 };
 
 config.api = {
   port: 8080,
   ip: "localhost",
   protocol: "http",
-  //getUrl: function() { return buildUrl(this); },
-  getUrl: function() { return "http://swapi.co/api/"; },
+  getUrl: function() { return buildUrl(this); },
 };
 
 config.mongo = {
