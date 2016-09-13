@@ -10,11 +10,33 @@ var API_URL = config.api.getUrl();
 var sub  = mqtt.connect(MQTT_URL);
 
 var channels = {
-  "sensor": function(message) {
-    console.log("Not yet implemented");
+  "new-sensor": function(message) {
+    request.post({
+      url: API_URL + "sensores",
+      json: JSON.parse(message.toString()),
+    }, function(error, response, body){
+        if(error) {
+            console.log(error);
+        } else {
+            console.log(response.statusCode, body);
+        }
+      }
+    );
   },
-  "sensors": function(message) {
-    console.log("Not yet implemented");
+  "update-sensor": function(message) {
+    message = JSON.parse(message.toString());
+    console.log("Patching value from " + API_URL + "sensores/" + message.alias + " to " + message.value);
+    request.patch({
+      url: API_URL + "sensores/" + message.alias,
+      json: {value: message.value},
+    }, function(error, response, body){
+        if(error) {
+            console.log(error);
+        } else {
+            console.log(response.statusCode, body);
+        }
+      }
+    );
   },
   "test": function(message) {
     console.log("Getting message from swapi.co/api/" + message.toString());
