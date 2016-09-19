@@ -2,10 +2,11 @@
 var Express = require('express');
 var router = Express.Router();
 var crud = require('./crud');
+var crudVitima = require('./crudVitima');
 
 //Schemas
 var Sensor = require('../models/sensor');
-var Usuario = require('../models/usuario');
+var Vitima = require('../models/vitima');
 
 
 router.get('/', function(req, res) {
@@ -13,6 +14,6 @@ router.get('/', function(req, res) {
 });
 
 crud(router, '/sensores', Sensor);
-crud(router, '/usuarios', Usuario);
+crudVitima(router, '/vitimas', Vitima);
 
 module.exports = router;
