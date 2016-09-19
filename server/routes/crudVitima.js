@@ -58,9 +58,9 @@ module.exports = function(router, route, Model) {
 	router.get(route + '/:Alias', function(req, res){
 
 		Model.findOne({'alias': req.params.Alias}, function(err, object){
-			response = {}
-			response['vitima'] = object
-			response['status'] = object.START
+			response = {};
+			response['vitima'] = object;
+			response['status'] = object.START;
 			res.json(response);
 		});
 	});

@@ -1,7 +1,7 @@
 //Index archive
 var Express = require('express');
 var router = Express.Router();
-var crud = require('./crud');
+var crudSensor = require('./crudSensor');
 var crudVitima = require('./crudVitima');
 
 //Schemas
@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 	res.send("Hello World. Oie.");
 });
 
-crud(router, '/sensores', Sensor);
+crudSensor(router, '/sensores', Sensor);
 crudVitima(router, '/vitimas', Vitima);
 
 module.exports = router;

@@ -46,11 +46,20 @@ module.exports = function(router, route, Model) {
 	//CREATE
 	router.post(route, function(req, res) {
 
-		var object = new Model();
+		var objectPost = new Model();
 
-		object = readRequest(object, Model, req);
+		objectPost = readRequest(objectPost, Model, req);
 
-		saveModel(object, res);
+		//Checking if it is unique
+		Model.findOne({'alias': objectPost.alias}, function(err, object){
+			console.log(object)
+			if (object == null){
+				saveModel(objectPost, res);
+			}
+			else{
+				res.send("Já existe um objeto com este alias.");
+			}
+		});
 
 	});
 	
