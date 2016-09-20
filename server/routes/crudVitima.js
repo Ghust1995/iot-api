@@ -38,6 +38,10 @@ module.exports = function(router, route, Model) {
           if (err)
               res.send(err);
 
+          _.forEach(objects, function(object){
+          	object.status = object.START;
+          	return object;
+          })
           res.json(objects);
 
         });
@@ -49,8 +53,17 @@ module.exports = function(router, route, Model) {
 		var object = new Model();
 
 		object = readRequest(object, Model, req);
-
-		saveModel(object, res);
+		
+		//Checking if it is unique
+		Model.findOne({'alias': objectPost.alias}, function(err, object){
+			console.log(object)
+			if (object == null){
+				saveModel(objectPost, res);
+			}
+			else{
+				res.send("Já existe um objeto com este alias.");
+			}
+		});
 
 	});
 	
@@ -58,10 +71,8 @@ module.exports = function(router, route, Model) {
 	router.get(route + '/:Alias', function(req, res){
 
 		Model.findOne({'alias': req.params.Alias}, function(err, object){
-			response = {};
-			response['vitima'] = object;
-			response['status'] = object.START;
-			res.json(response);
+			object.status = object.START;
+			res.json(object);
 		});
 	});
 
