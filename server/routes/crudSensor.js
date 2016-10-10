@@ -17,7 +17,7 @@ function readRequest(object, Model, req) {
 }
 
 function saveModel(object, res){
-	object.save(function(err, saved) {
+	object.save(function(err/*, saved*/) {
 		if(err){
 			console.log(err);
 			res.send(err);

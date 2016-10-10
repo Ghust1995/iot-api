@@ -5,7 +5,7 @@ function readRequest(object, Model, req) {
 	var Attributes = _.keys(Model.schema.paths);
 
 	_.forEach(Attributes, function(path){
-		value = _.get(req.body, path);
+		var value = _.get(req.body, path);
 		if(!_.isUndefined(value)){
 			_.set(object, path, value);
 		}
@@ -15,7 +15,7 @@ function readRequest(object, Model, req) {
 }
 
 function saveModel(object, res){
-	object.save(function(err, saved) {
+	object.save(function(err/*, saved*/) {
 		if(err){
 			console.log(err);
 			res.send(err);

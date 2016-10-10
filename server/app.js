@@ -1,8 +1,8 @@
 var Express = require('express');
-var _ = require ("underscore");
+//var _ = require ("underscore");
 var bodyParser = require ("body-parser");
 var logger = require('morgan');
-var routes = require('./routes/index')
+var routes = require('./routes/index');
 var mongoose = require('mongoose');
 
 //Setting up the app

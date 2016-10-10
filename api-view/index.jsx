@@ -38,7 +38,9 @@ class Grid extends React.Component {
 
   render () {
     var options = _.map(apiRoutes, (apiOption) => {
-      return <option value={apiOption} key={_.uniqueId("apioption_")}>{apiOption}</option>
+      return (
+        <option value={apiOption} key={_.uniqueId("apioption_")}>{apiOption}</option>
+      );
     });
 
     return <div>
