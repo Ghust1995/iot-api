@@ -11,6 +11,7 @@ var sub  = mqtt.connect(MQTT_URL);
 
 var channels = {
   "new-sensor": function(message) {
+    console.log("Making Request");
     request.post({
       url: API_URL + "sensores",
       json: JSON.parse(message.toString()),

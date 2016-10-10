@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 function readRequest(object, Model, req) {
 	var Attributes = _.keys(Model.schema.paths);
-	
+
 	_.forEach(Attributes, function(path){
 		value = _.get(req.body, path);
 		if(!_.isUndefined(value)){
@@ -19,7 +19,7 @@ function readRequest(object, Model, req) {
 function saveModel(object, res){
 	object.save(function(err, saved) {
 		if(err){
-			console.log(err)
+			console.log(err);
 			res.send(err);
 		}
 		else {
@@ -30,7 +30,7 @@ function saveModel(object, res){
 }
 
 module.exports = function(router, route, Model) {
-	
+
 	//LIST
 	router.get(route, function(req, res) {
 
@@ -41,7 +41,7 @@ module.exports = function(router, route, Model) {
           _.forEach(objects, function(object){
           	object.status = object.START;
           	return object;
-          })
+          });
           res.json(objects);
 
         });
@@ -50,14 +50,14 @@ module.exports = function(router, route, Model) {
 	//CREATE
 	router.post(route, function(req, res) {
 
-		var object = new Model();
+		var objectPost = new Model();
 
-		object = readRequest(object, Model, req);
-		
+		objectPost = readRequest(objectPost, Model, req);
+
 		//Checking if it is unique
 		Model.findOne({'alias': objectPost.alias}, function(err, object){
-			console.log(object)
-			if (object == null){
+			console.log(object);
+			if (object === null){
 				saveModel(objectPost, res);
 			}
 			else{
@@ -66,7 +66,7 @@ module.exports = function(router, route, Model) {
 		});
 
 	});
-	
+
 	//READ
 	router.get(route + '/:Alias', function(req, res){
 
@@ -110,4 +110,4 @@ module.exports = function(router, route, Model) {
 
 
 	return router;
-}
+};
