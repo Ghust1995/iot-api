@@ -1,0 +1,19 @@
+{
+  "name": "api-iot",
+  "version": "1.0.0",
+  "description": "IoT API integrating Mosca and Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ghust1995/iot-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ghust1995/iot-api/issues"
+  },
+  "homepage": "https://github.com/Ghust1995/iot-api#readme"
+}

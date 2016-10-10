@@ -10,5 +10,5 @@ Make sure to have a mongo db set where the configuration says and set the config
 
 To run dummy clients do:
 
-node ./SampleClient/dummies/update.js [channel] [alias] [new-value]
-node ./SampleClient/dummies/create.js [channel] [alias]
+node ./Client/dummies/update.js [channel] [alias] [new-value]
+node ./Client/dummies/create.js [channel] [alias]
