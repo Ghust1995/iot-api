@@ -6,12 +6,13 @@ var routes = require('./routes/index');
 var mongoose = require('mongoose');
 
 //Setting up the app
+var config = require('./config');
 var app = new Express();
 var router = Express.Router();
 
 //Database settings
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://127.0.0.1/Firefighter');/*,function(){
+mongoose.connect(config.db[app.settings.env]);/*,function(){
     mongoose.connection.db.dropDatabase();
  });*/
 

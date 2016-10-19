@@ -12,20 +12,4 @@ config.mqtt = {
   channels: ["update-sensor", "new-sensor", "test"]
 };
 
-config.api = {
-  port: 8080,
-  ip: "localhost",
-  protocol: "http",
-  postfix: "api/",
-  getUrl: function() { return buildUrl(this); },
-};
-
-config.mongo = {
-  port: 27017,
-  ip: "localhost",
-  protocol: "mongodb",
-  postfix: "",
-  getUrl: function() { return buildUrl(this); },
-};
-
 module.exports = config;
