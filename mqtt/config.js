@@ -5,7 +5,7 @@ function buildUrl(obj) {
 
 config.mqtt = {
   port: 1883,
-  ip: "localhost",
+  ip: "192.168.99.100",
   protocol: "mqtt",
   postfix: "",
   getUrl: function() { return buildUrl(this); },
