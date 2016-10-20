@@ -49,9 +49,7 @@ module.exports = function(router, route, Model) {
 	router.post(route, function(req, res) {
 
 		var objectPost = new Model();
-
 		objectPost = readRequest(objectPost, Model, req);
-
 		//Checking if it is unique
 		Model.findOne({'alias': objectPost.alias}, function(err, object){
 			console.log(object);
